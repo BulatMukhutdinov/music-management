@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    app:startDestination="@id/home">
+
+    <fragment
+        android:id="@+id/home"
+        android:name="tat.mukhutdinov.musicmanagement.home.ui.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/home">
+
+        <action
+            android:id="@+id/to_albumsTop"
+            app:destination="@id/albumsTop"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim" />
+
+        <action
+            android:id="@+id/to_album"
+            app:destination="@id/album"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/artistSearch"
+        android:name="tat.mukhutdinov.musicmanagement.artistserarch.ui.ArtistSearchFragment"
+        android:label="Artist search"
+        tools:layout="@layout/artist_search" />
+
+    <fragment
+        android:id="@+id/albumsSaved"
+        android:name="tat.mukhutdinov.musicmanagement.albumssaved.ui.AlbumsSavedFragment"
+        android:label="Albums Saved"
+        tools:layout="@layout/albums_saved" />
+
+    <fragment
+        android:id="@+id/album"
+        android:name="tat.mukhutdinov.musicmanagement.album.ui.AlbumFragment"
+        android:label="Album"
+        tools:layout="@layout/album">
+
+        <argument
+            android:name="album"
+            app:argType="tat.mukhutdinov.musicmanagement.album.model.Album" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/albumsTop"
+        android:name="tat.mukhutdinov.musicmanagement.albumstop.ui.AlbumsTopFragment"
+        android:label="Albums Top"
+        tools:layout="@layout/albums_top">
+
+        <argument
+            android:name="artist"
+            app:argType="tat.mukhutdinov.musicmanagement.artistserarch.model.Artist" />
+
+        <action
+            android:id="@+id/to_album"
+            app:destination="@id/album"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim" />
+    </fragment>
+</navigation>

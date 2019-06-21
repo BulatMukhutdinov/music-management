@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Music Management</string>
+    <string name="saved_albums">Saved Albums</string>
+    <string name="artists">Artists</string>
+    <string name="search">Search</string>
+    <string name="search_hint">Artist name</string>
+    <string name="empty_list">No items so far</string>
+    <string name="listeners_amount">Listeners: %1$d</string>
+    <string name="swipe_to_delete">finish swiping to delete</string>
+    <string name="on_album_deleted">Album %1$s has been deleted</string>
+</resources>
