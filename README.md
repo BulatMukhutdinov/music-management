@@ -1,4 +1,4 @@
-<a href="Music Management.apk" download>Click to download the apk</a>
+<a href="https://github.com/BulatMukhutdinov/music-management/blob/master/Music%20Manager.apk?raw=true" download>Click to download the apk</a>
 # Task description
 Develop a music management app for Android based on the LastFM API. With the help of the app the user should be able to search for artists, pick one of their top albums and save it locally.
 The app should contain the following screens:
