@@ -12,8 +12,7 @@ import tat.mukhutdinov.musicmanagement.track.gateway.boundary.TrackDao
         AlbumEntity::class,
         TrackEntity::class
     ],
-    version = 10)
-//@TypeConverters(Converters::class)
+    version = 12)
 abstract class DataBase : RoomDatabase() {
 
     abstract fun albumDao(): AlbumDao

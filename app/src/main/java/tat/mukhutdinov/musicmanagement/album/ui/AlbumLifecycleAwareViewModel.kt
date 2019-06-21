@@ -2,7 +2,6 @@ package tat.mukhutdinov.musicmanagement.album.ui
 
 import android.content.Context
 import android.graphics.Bitmap
-import android.graphics.Color
 import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
@@ -63,7 +62,7 @@ class AlbumLifecycleAwareViewModel(
         }
 
         viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
-            if (!args.album.isSavedLocally) {
+            if (args.album.tracks.isEmpty()) {
                 val result = getAlbumUseCase.execute(albumName = args.album.title, artistName = args.album.artist)
                 album.postValue(result)
                 tracks.postValue(result.tracks)

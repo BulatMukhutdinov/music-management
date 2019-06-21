@@ -22,7 +22,9 @@ class TrackEntity(
     @ColumnInfo(name = COLUMN_NAME)
     var name: String,
     @ColumnInfo(name = COLUMN_RANK)
-    var rank: Int
+    var rank: Int,
+    @ColumnInfo(name = COLUMN_DURATION)
+    var duration: Int
 ) {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = COLUMN_ID)
@@ -37,5 +39,6 @@ class TrackEntity(
         const val COLUMN_NAME = "name"
         const val COLUMN_RANK = "rank"
         const val COLUMN_ALBUM_ID = "album_id"
+        const val COLUMN_DURATION = "duration"
     }
 }

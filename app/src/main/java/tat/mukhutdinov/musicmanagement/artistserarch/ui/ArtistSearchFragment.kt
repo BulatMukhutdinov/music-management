@@ -2,7 +2,6 @@ package tat.mukhutdinov.musicmanagement.artistserarch.ui
 
 import android.os.Bundle
 import android.view.KeyEvent
-import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.lifecycle.Observer
@@ -11,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.artist_search.artists
 import kotlinx.android.synthetic.main.artist_search.loading
 import kotlinx.android.synthetic.main.artist_search.query
+import kotlinx.android.synthetic.main.artist_search.search
 import org.koin.android.viewmodel.ext.android.viewModel
 import tat.mukhutdinov.musicmanagement.R
 import tat.mukhutdinov.musicmanagement.artistserarch.ui.adapter.ArtistDiffUtilCallback
@@ -64,22 +64,16 @@ class ArtistSearchFragment : BaseFragment<ArtistSearchViewModelBinding, ArtistSe
                 }
             },
             errorCallback = {
-                context?.toast(it.localizedMessage)
+                context?.toast("${it.localizedMessage} ${it} ${it.cause?.message}")
             }
         )
     }
 
     private fun setupSearch() {
-        query.setOnTouchListener { view, event ->
-            if (isSearchClicked(event)) {
-                search(view)
-                return@setOnTouchListener true
-            }
-            false
-        }
+        search.setOnClickListener { search(it) }
 
         query.setOnEditorActionListener { view, actionId: Int, event: KeyEvent? ->
-            if (event?.keyCode == KeyEvent.KEYCODE_ENTER || actionId == EditorInfo.IME_ACTION_DONE) {
+            if (event?.keyCode == KeyEvent.KEYCODE_ENTER || actionId == EditorInfo.IME_ACTION_SEARCH) {
                 search(view)
                 true
             } else {
@@ -92,13 +86,5 @@ class ArtistSearchFragment : BaseFragment<ArtistSearchViewModelBinding, ArtistSe
         viewModel.onSearchClicked(query.text.toString())
 
         Utils.hideKeyboard(view)
-    }
-
-    private fun isSearchClicked(event: MotionEvent): Boolean =
-        event.action == MotionEvent.ACTION_UP
-            && event.rawX >= query.right - (query.compoundDrawables[DRAWABLE_END]?.bounds?.width() ?: 0) * 2
-
-    companion object {
-        private const val DRAWABLE_END = 2
     }
 }

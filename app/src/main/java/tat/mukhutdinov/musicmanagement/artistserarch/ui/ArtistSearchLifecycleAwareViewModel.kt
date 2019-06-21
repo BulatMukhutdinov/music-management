@@ -4,12 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.cancelAndJoin
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import tat.mukhutdinov.musicmanagement.artistserarch.model.Artist
 import tat.mukhutdinov.musicmanagement.artistserarch.ui.boundary.ArtistSearchUseCase
 import tat.mukhutdinov.musicmanagement.home.ui.HomeFragmentDirections
@@ -42,17 +37,21 @@ class ArtistSearchLifecycleAwareViewModel(
     override fun onSearchClicked(query: String) {
         artists.onStart()
 
-        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
-            searchJob?.cancelAndJoin()
+        viewModelScope.launch {
+            // https://github.com/Kotlin/kotlinx.coroutines/issues/1035
+            withContext(Dispatchers.IO + exceptionHandler) {
+                searchJob?.cancelAndJoin()
 
-            searchJob = launch {
-                val result = artistSearchUseCase.execute(query)
+                searchJob = launch {
+                    val result = artistSearchUseCase.execute(query)
 
-                withContext(Dispatchers.Main) {
-                    artists.onNext(result)
-                    isListEmpty.value = result.isEmpty()
+                    withContext(Dispatchers.Main) {
+                        artists.onNext(result)
+                        isListEmpty.value = result.isEmpty()
+                    }
                 }
             }
+
         }
     }
 

@@ -3,11 +3,16 @@ package tat.mukhutdinov.musicmanagement.album.db
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
+import tat.mukhutdinov.musicmanagement.album.db.AlbumEntity.Companion.COLUMN_CREATED_AT
+import tat.mukhutdinov.musicmanagement.album.db.AlbumEntity.Companion.COLUMN_ID
 import tat.mukhutdinov.musicmanagement.album.db.AlbumEntity.Companion.TABLE_NAME
 import tat.mukhutdinov.musicmanagement.infrastructure.common.model.Image
 
-@Entity(tableName = TABLE_NAME)
+@Entity(
+    tableName = TABLE_NAME,
+    indices = [Index(value = [COLUMN_ID]), Index(value = [COLUMN_CREATED_AT])])
 class AlbumEntity(
     @ColumnInfo(name = COLUMN_TITLE)
     var title: String,

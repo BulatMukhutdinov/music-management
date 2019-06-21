@@ -10,25 +10,29 @@ class TrackConverterImpl : TrackConverter {
         Track(
             id = 0,
             rank = response.rankResponse.rank.toInt(),
-            name = response.name
+            name = response.name,
+            duration = response.duration
         )
 
     override fun fromResponseToEntity(response: TrackResponse): TrackEntity =
         TrackEntity(
             name = response.name,
-            rank = response.rankResponse.rank.toInt()
+            rank = response.rankResponse.rank.toInt(),
+            duration = response.duration
         )
 
     override fun fromEntityToModel(entity: TrackEntity): Track =
         Track(
             id = entity.id,
             rank = entity.rank,
-            name = entity.name
+            name = entity.name,
+            duration = entity.duration
         )
 
     override fun fromModelToEntity(model: Track): TrackEntity =
         TrackEntity(
             name = model.name,
-            rank = model.rank
+            rank = model.rank,
+            duration = model.duration
         ).apply { id = model.id }
 }
