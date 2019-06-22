@@ -7,9 +7,7 @@ import android.view.inputmethod.EditorInfo
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.artist_search.artists
-import kotlinx.android.synthetic.main.artist_search.loading
-import kotlinx.android.synthetic.main.artist_search.query
+import kotlinx.android.synthetic.main.artist_search.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import tat.mukhutdinov.musicmanagement.R
 import tat.mukhutdinov.musicmanagement.artistserarch.ui.adapter.ArtistDiffUtilCallback
@@ -62,7 +60,7 @@ class ArtistSearchFragment : BaseFragment<ArtistSearchViewModelBinding, ArtistSe
                 }
             },
             errorCallback = {
-                context?.toast("${it.localizedMessage} ${it} ${it.cause?.message}")
+                context?.toast(it.localizedMessage)
             }
         )
     }
