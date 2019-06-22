@@ -1,5 +1,6 @@
 package tat.mukhutdinov.musicmanagement.artistserarch.ui
 
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavDirections
 import tat.mukhutdinov.musicmanagement.artistserarch.model.Artist
@@ -12,5 +13,5 @@ interface ArtistSearchViewModel : BaseViewModel<ArtistSearchViewModelBinding> {
 
     val directions: LiveData<NavDirections>
 
-    fun onSearchClicked(query: String)
+    fun onSearchClicked(view: View)
 }

@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.artist_search.artists
 import kotlinx.android.synthetic.main.artist_search.loading
 import kotlinx.android.synthetic.main.artist_search.query
-import kotlinx.android.synthetic.main.artist_search.search
 import org.koin.android.viewmodel.ext.android.viewModel
 import tat.mukhutdinov.musicmanagement.R
 import tat.mukhutdinov.musicmanagement.artistserarch.ui.adapter.ArtistDiffUtilCallback
@@ -18,7 +17,6 @@ import tat.mukhutdinov.musicmanagement.artistserarch.ui.adapter.ArtistSearchAdap
 import tat.mukhutdinov.musicmanagement.databinding.ArtistSearchBinding
 import tat.mukhutdinov.musicmanagement.home.ui.HomeFragment
 import tat.mukhutdinov.musicmanagement.infrastructure.common.ui.BaseFragment
-import tat.mukhutdinov.musicmanagement.infrastructure.util.ui.Utils
 import tat.mukhutdinov.musicmanagement.infrastructure.util.ui.observeViewState
 import tat.mukhutdinov.musicmanagement.infrastructure.util.ui.toast
 
@@ -70,21 +68,13 @@ class ArtistSearchFragment : BaseFragment<ArtistSearchViewModelBinding, ArtistSe
     }
 
     private fun setupSearch() {
-        search.setOnClickListener { search(it) }
-
         query.setOnEditorActionListener { view, actionId: Int, event: KeyEvent? ->
             if (event?.keyCode == KeyEvent.KEYCODE_ENTER || actionId == EditorInfo.IME_ACTION_SEARCH) {
-                search(view)
+                viewModel.onSearchClicked(view)
                 true
             } else {
                 false
             }
         }
-    }
-
-    private fun search(view: View) {
-        viewModel.onSearchClicked(query.text.toString())
-
-        Utils.hideKeyboard(view)
     }
 }

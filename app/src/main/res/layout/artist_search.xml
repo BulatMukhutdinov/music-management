@@ -29,17 +29,20 @@
                 android:layout_height="match_parent"
                 android:imeOptions="actionSearch"
                 android:inputType="text"
+                android:text="@={binding.query}"
                 android:paddingEnd="48dp"
                 android:singleLine="true"
                 tools:ignore="RtlSymmetry" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <ImageView
+        <ImageButton
             android:id="@+id/search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginTop="16dp"
+            android:background="@null"
+            android:onClick="@{(view) -> binding.onSearchClicked(view)}"
             android:padding="12dp"
             android:src="@drawable/ic_search" />
 
