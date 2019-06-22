@@ -21,7 +21,6 @@ object CommonInjectionModule {
         single {
             Room.databaseBuilder(get(), DataBase::class.java, DATABASE_NAME)
                 .fallbackToDestructiveMigration()
-                .allowMainThreadQueries()
                 .build()
         }
 
