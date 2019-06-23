@@ -36,6 +36,7 @@ data class DataState<out T>(
             }
             is State.Error -> {
                 loadingCallback?.invoke(false)
+                data?.let { dataCallback?.invoke(it) }
                 errorCallback?.invoke(state.throwable)
             }
         }
